@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>B站视频解析器</title>
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <div id="app">
+            <div class="mdui-dialog" id="dialog">
+                <div class="mdui-dialog-title">
+                    系统提示
+                </div>
+                <div class="mdui-dialog-content" id="content">
+                    
+                </div>
+                <div class="mdui-dialog-actions"><button class="mdui-btn mdui-ripple" mdui-dialog-cancel>关闭</button>
+                </div>
+            </div>
+            <template>
+                <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop> <el-row>
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark"><el-menu mode="horizontal" text-color="#212121">
+                              <el-menu-item>
+                              <el-link :underline="false" href="#">
+                               B站视频解析器 
+                              </el-link> 
+                              </el-menu-item> 
+                            </el-menu> <el-card class="box-card" style="padding: 5px;">
+                              <div slot="header" class="clearfix"><span>操作区</span>
+                              </div>
+                              <div class="text item hz"><el-col :span="16">
+                              <div class="grid-content bg-purple"><el-input id="url" placeholder="请输入视频链接或BVID" v-model="input" clearable> 
+                              </el-input>
+                              </div> 
+                              </el-col>
+                              <el-col :span="7">
+                              <div class="grid-content bg-purple"><el-row>
+                               <el-button type="primary" @click="parse()" v-loading.fullscreen.lock="fullscreenLoading" style="margin-top: 5px;text-align: center;">
+                               开始解析 
+                              </el-button>
+                              </el-row>
+                              </div> 
+                              </el-col>
+                              </div>
+                              <br> 
+                            </el-card> <el-card class="box-card">
+                              <div slot="header" class="clearfix"><span>视频解析结果</span>
+                              </div>
+                              <div class="text item">
+                              <div class="video" id="video"></div>
+                              <div class="message">
+                              <li>视频标题：</li><span id="title">待解析</span>
+                              </div>
+                              <div class="message">
+                              <li>视频简介：</li><span id="Introduction">待解析</span>
+                              </div>
+                              <div class="message">
+                              <li>视频封面：</li><el-link :underline="false" id="fm">
+                              待解析
+                              </el-link>
+                              </div>
+                              <div class="message">
+                              <li>视频地址：</li><el-link :underline="false" id="urls">
+                              待解析
+                              </el-link>
+                              </div>
+                              </div> 
+                            </el-card>
+                        </div>
+                        <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop> 
+                    </el-col> 
+                </el-row>
+            </template>
+        </div>
+        <script src="/js/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+        <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+        <script src="/js/main.js"></script>
+    </body>
+</html><!--
+//
+//                       _oo0oo_
+//                      o8888888o
+//                      88" . "88
+//                      (| -_- |)
+//                      0\  =  /0
+//                    ___/`---'\___
+//                  .' \\|     |// '.
+//                 / \\|||  :  |||// \
+//                / _||||| -:- |||||- \
+//               |   | \\\  -  /// |   |
+//               | \_|  ''\---/''  |_/ |
+//               \  .-\__  '-'  ___/-. /
+//             ___'. .'  /--.--\  `. .'___
+//          ."" '<  `.___\_<|>_/___.' >' "".
+//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//         \  \ `_.   \_ __\ /__ _/   .-` /  /
+//     =====`-.____`.___ \_____/___.-`___.-'=====
+//                       `=---='
+//
+//
+//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//
+//               佛祖保佑         代码永无BUG
+//
+-->
