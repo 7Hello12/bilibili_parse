@@ -14,7 +14,8 @@ npm install
 node app
 ```
 浏览器访问
-http://127.0.0.1:3003/index进入解析页面
+http://127.0.0.1:3003/index
+进入解析页面
 
 视频解析接口
 http://127.0.0.1:3003/api?bvid=xxx
