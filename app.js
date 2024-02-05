@@ -1,3 +1,10 @@
+/*
+* by github：7Hello12
+* Email：g3399711161@gmail.com
+* Github homepage：https://github.com/7Hello12
+* 转载或二创请通过邮箱说一声哦！
+*/
+
 const express = require('express');
 const fs = require('fs');
 const app = express();
@@ -12,6 +19,23 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.get("/index",(req,res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
+
+//计算视频时长
+function gmdate(format, timestamp) {
+  var date = new Date(timestamp * 1000);
+
+  // 获取小时、分钟、秒
+  var hours = date.getUTCHours().toString().padStart(2, '0');
+  var minutes = date.getUTCMinutes().toString().padStart(2, '0');
+  var seconds = date.getUTCSeconds().toString().padStart(2, '0');
+
+  // 替换格式中的占位符
+  format = format.replace('H', hours);
+  format = format.replace('i', minutes);
+  format = format.replace('s', seconds);
+
+  return format;
+}
 
 app.all("/api",(req,res) => {
     const bvids = req.query.bvid;
@@ -31,6 +55,7 @@ app.all("/api",(req,res) => {
                         const biliJson = [{
                             'title': jsonData.data.pages[0].part,
                             'duration': jsonData.data.duration,
+                            'durationFormat': gmdate('H:i:s', jsonData.data.duration - 1),
                             'accept': Json_data.data.accept_description,
                             'video_url': Json_data.data.durl[0].url,
                         }];
