@@ -42,7 +42,7 @@ app.all("/api",(req,res) => {
     httpModule.get('https://api.bilibili.com/x/web-interface/view?bvid=' + bvids, (error, response, body) => {
         if (error) {
             console.error(error);
-            res.json({code: '-1', msg: "什么！！解析失败了？请检查一下你的参数是否输入正确"})
+            res.json({code: '-1', msg: "什么！！出现错误了？错误原因：" + error})
         } else {
             const jsonData = JSON.parse(body);
             if (jsonData.code == 0) {
